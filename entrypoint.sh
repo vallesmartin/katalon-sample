@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "Entrypoint iniciado"
+echo "Entrypoint iniciado."
 echo "Argumentos recibidos: $@"
 
 # Variables de entorno para Katalon
