@@ -1,0 +1,24 @@
+name: Build and Run Test
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build-and-run:
+    runs-on: self-hosted
+    steps:
+      # Paso 1: Clonar el repositorio
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Paso 2: Construir la imagen Docker desde el Dockerfile
+      - name: Build Docker Image
+        run: |
+          docker build -t katalon-test .
+
+      # Paso 3: Ejecutar la imagen construida
+      - name: Run Docker Container
+        run: |
+          docker run --rm --name katalon-runner -e KATALON_API_KEY="4a31757c-0ae9-49b1-8c43-280ae1ff64fa" -e BROWSER_TYPE="Chrome" -e EXECUTION_PROFILE="default" -e TEST_SUITE_PATH="Test Suites/Order and check out with Global Variable" -e RETRY_COUNT="0" katalon-test

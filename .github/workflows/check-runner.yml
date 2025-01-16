@@ -1,4 +1,4 @@
-name: Self-hosted Runner Test
+name: Check Runner
 
 on:
   push:
@@ -12,8 +12,7 @@ jobs:
       - name: Set Execution Policy
         shell: powershell
         run: |
-          Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass -Force
-          Write-Host "Execution policy set to Bypass"
+          Set-ExecutionPolicy -Scope Process Unrestricted -Force
       - name: Check Runner
         shell: powershell
         run: echo "This is running on my self-hosted runner!"
