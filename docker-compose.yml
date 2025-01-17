@@ -1,0 +1,22 @@
+version: "3.8"
+
+services:
+  katalon:
+    build:
+      context: .
+    container_name: katalon_runner
+    environment:
+      - KATALON_API_KEY=4a31757c-0ae9-49b1-8c43-280ae1ff64fa
+      - BROWSER_TYPE=Chrome
+      - EXECUTION_PROFILE=default
+      - TEST_SUITE_PATH=Test Suites/Order and check out with Global Variable
+      - RETRY_COUNT=0
+    volumes:
+      # Monta solo las carpetas necesarias
+      - ./reports:/katalon/katalon/report
+    networks:
+      - katalon_network
+
+networks:
+  katalon_network:
+    driver: bridge
